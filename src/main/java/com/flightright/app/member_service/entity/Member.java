@@ -11,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -38,7 +41,7 @@ public class Member {
 	@Column(name="date_of_birth")
 	private Date dateOfBirth;
 	
-	//Validation required
+	@NumberFormat(style = Style.NUMBER)
 	@Column(name="postal_code")
 	private int postalCode;
 

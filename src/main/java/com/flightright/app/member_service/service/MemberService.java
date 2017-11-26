@@ -46,6 +46,12 @@ public class MemberService {
 		return members;
 	}
 
+	/**
+	 * Repository 'save' method create or update the member
+	 * If Primary key in the object is same, then it updates the row instead of creating.
+	 * @param newMember
+	 * @return
+	 */
 	public Member updateMember(Member newMember) {
 		if(newMember.getMemberId() == null){
 			throw new MemberNotFoundException("MemberId cannot be null");
