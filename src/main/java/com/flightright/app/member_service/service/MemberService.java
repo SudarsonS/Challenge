@@ -16,7 +16,7 @@ import com.flightright.app.member_service.util.Util;
 @Service
 public class MemberService {
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
-	
+
 	@Autowired
 	MemberRepository memberRepository;
 
@@ -29,7 +29,7 @@ public class MemberService {
 	}
 
 	public Member findById(long id) {
-		Member member  = memberRepository.findById(id);
+		Member member  = memberRepository.findOne(id);
 		if(member == null){
 			logger.debug("Member id : {}, does not found in database.", id);
 			throw new MemberNotFoundException("Member does not exits");
@@ -38,11 +38,40 @@ public class MemberService {
 	}
 
 	public List<Member> findAllMembers() {
-		List<Member> members = memberRepository.findAllMembers();
+		List<Member> members = memberRepository.findAll();
 		if(members == null || members.isEmpty()){
 			logger.debug("Table is Empty. No member found.");
 			throw new MemberNotFoundException("Table is Empty. No member found.");
 		}
 		return members;
 	}
+
+	public Member updateMember(Member newMember) {
+		if(newMember.getMemberId() == null){
+			throw new MemberNotFoundException("MemberId cannot be null");
+		}
+		if(memberNotExists(newMember.getMemberId())){
+			return memberRepository.save(newMember);
+		}
+		return null;
+	}
+
+	private boolean memberNotExists(Long id) {
+		if(! memberRepository.exists(id)){
+			logger.debug("Member id : {}, does not found in database.", id);
+			throw new MemberNotFoundException("Member does not exits");
+		}
+		return true;
+	}
+
+	public void deleteMember(long id) {
+		if(memberNotExists(id)){
+			memberRepository.delete(id);
+		}
+	}
+
+	public void deleteAllMembers() {
+		memberRepository.deleteAll();
+	}
+
 }

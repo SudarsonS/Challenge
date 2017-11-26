@@ -44,5 +44,22 @@ public class MemberController {
         List<Member> members = memberService.findAllMembers();
         return new ResponseEntity<List<Member>>(members, HttpStatus.OK);
     }
- 
+	
+	 @RequestMapping(value = "/member/", method = RequestMethod.PUT)
+	 public ResponseEntity<Member> updateMember(@RequestBody Member newMember) {
+		Member member = memberService.updateMember(newMember);
+		return new ResponseEntity<Member>(member, HttpStatus.OK);	 
+	 }
+	 
+	 @RequestMapping(value = "/member/{id}", method = RequestMethod.DELETE)
+	 public ResponseEntity<Void> deleteMember(@PathVariable("id") long id) {
+		memberService.deleteMember(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);	
+	 }
+	 
+	 @RequestMapping(value = "/members/", method = RequestMethod.DELETE)
+	 public ResponseEntity<Void> deleteAllMembers() {
+		memberService.deleteAllMembers();
+		return new ResponseEntity<Void>(HttpStatus.OK);	
+	 }
 }
