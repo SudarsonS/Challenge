@@ -18,7 +18,7 @@ import com.flightright.app.member_service.entity.Member;
 import com.flightright.app.member_service.service.MemberService;
 
 @RestController
-@RequestMapping(value = "/member")
+@RequestMapping(value = "/members")
 public class MemberController {
 
 	private MemberService memberService;
@@ -55,12 +55,12 @@ public class MemberController {
 	 @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	 public ResponseEntity<Void> deleteMember(@PathVariable("id") long id) {
 		memberService.deleteMember(id);
-		return new ResponseEntity<Void>(HttpStatus.OK);	
+		return ResponseEntity.ok().build();
 	 }
 	 
 	 @RequestMapping(value = "/", method = RequestMethod.DELETE)
 	 public ResponseEntity<Void> deleteAllMembers() {
 		memberService.deleteAllMembers();
-		return new ResponseEntity<Void>(HttpStatus.OK);	
+		return ResponseEntity.ok().build();
 	 }
 }

@@ -52,7 +52,7 @@ public class MemberControllerAPITest {
 
     @Test
     public void shouldReturnCreatedStatusIfTheMemberIsPassed() throws Exception {
-        mvc.perform(post("/member/")
+        mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
                         {
@@ -74,7 +74,7 @@ public class MemberControllerAPITest {
 
     @Test
     public void shouldReturn400BadRequestIfFirstLameIsNull() throws Exception {
-        mvc.perform(post("/member/")
+        mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
 	                    {
@@ -90,7 +90,7 @@ public class MemberControllerAPITest {
 
     @Test
     public void shouldReturn400BadRequestIfLastLameIsNull() throws Exception {
-        mvc.perform(post("/member/")
+        mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
 	                    {
@@ -112,7 +112,7 @@ public class MemberControllerAPITest {
         map.put("lastName", "Chris");
         map.put("dateOfBirth", date);
         map.put("postalCode", 12345);
-        mvc.perform(post("/member/")
+        mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(asJson(map)))
                 .andExpect(status().is(400));
@@ -120,13 +120,13 @@ public class MemberControllerAPITest {
 
     @Test
     public void shouldReturn404BadRequestIfGetMemberByIdIsNotPresent() throws Exception {
-        mvc.perform(get("/member/10987632467"))
+        mvc.perform(get("/members/10987632467"))
                 .andExpect(status().is(404));
     }
 
     @Test
     public void shouldReturnMemberForGivenId() throws Exception {
-        MvcResult mvcResult = mvc.perform(post("/member/")
+        MvcResult mvcResult = mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
                         {
@@ -139,7 +139,7 @@ public class MemberControllerAPITest {
                 )).andReturn();
         String response = mvcResult.getResponse().getContentAsString();
 
-        mvc.perform(get("/member/" + getId(response)))
+        mvc.perform(get("/members/" + getId(response)))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.firstName", is("John")))
                 .andExpect(jsonPath("$.lastName", is("Mathew")))
@@ -149,7 +149,7 @@ public class MemberControllerAPITest {
 
     @Test
     public void shouldReturnAllTheMembers() throws Exception {
-        mvc.perform(post("/member/")
+        mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
                         {
@@ -161,7 +161,7 @@ public class MemberControllerAPITest {
 	                */)
                 )).andExpect(status().isCreated());
 
-        mvc.perform(post("/member/")
+        mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
 	                    {
@@ -174,7 +174,7 @@ public class MemberControllerAPITest {
                 ))
                 .andExpect(status().is(201));
 
-        mvc.perform(get("/member/"))
+        mvc.perform(get("/members/"))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].firstName", is("John")))
@@ -189,16 +189,16 @@ public class MemberControllerAPITest {
 
     @Test
     public void shouldReturn404BadRequestIfNoMembersToGetFromDatabase() throws Exception {
-        mvc.perform(delete("/member/"))
+        mvc.perform(delete("/members/"))
                 .andExpect(status().is(200));
 
-        mvc.perform(get("/member/"))
+        mvc.perform(get("/members/"))
                 .andExpect(status().is(404));
     }
 
     @Test
     public void shouldReturn200ForUpdatingTheMember() throws Exception {
-        MvcResult mvcResult = mvc.perform(post("/member/")
+        MvcResult mvcResult = mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
                         {
@@ -224,7 +224,7 @@ public class MemberControllerAPITest {
 	                */);
         String bodyWithActualId = body.replace("\"memberId\":1", "\"memberId\":" + getId(response));
 
-        mvc.perform(put("/member/")
+        mvc.perform(put("/members/")
                 .contentType("application/json")
                 .content(bodyWithActualId))
                 .andExpect(status().is(200));
@@ -232,7 +232,7 @@ public class MemberControllerAPITest {
 
     @Test
     public void shouldReturn200ForDeletingTheMemberForGivenId() throws Exception {
-    	MvcResult mvcResult = mvc.perform(post("/member/")
+    	MvcResult mvcResult = mvc.perform(post("/members/")
                 .contentType("application/json")
                 .content(multiLineString(/*
                         {
@@ -247,13 +247,13 @@ public class MemberControllerAPITest {
     	
     	String response = mvcResult.getResponse().getContentAsString();
     	 
-        mvc.perform(delete("/member/"+getId(response)))
+        mvc.perform(delete("/members/"+getId(response)))
                 .andExpect(status().is(200));
     }
 
     @Test
     public void shouldReturn200ForDeletingAllTheData() throws Exception {
-        mvc.perform(delete("/member/"))
+        mvc.perform(delete("/members/"))
                 .andExpect(status().is(200));
     }
 
