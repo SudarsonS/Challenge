@@ -29,9 +29,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createMember(@Valid @RequestBody Member member){
-		memberService.createMember(member);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+    public ResponseEntity<Member> createMember(@Valid @RequestBody Member member){
+		Member savedMember = memberService.createMember(member);
+		return new ResponseEntity<>(savedMember, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

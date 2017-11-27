@@ -8,7 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +19,8 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
+@Transactional
+@Rollback
 public class MemberRepositoryIntegrationTest {
 
     @Autowired
@@ -35,9 +39,9 @@ public class MemberRepositoryIntegrationTest {
     @Test
     public void shouldReturnTheMemberForTheGivenIdInTheDatabase() throws Exception{
     	 Member member = new Member(null, "Chris2", "Mathew",  LocalDate.now(), 12345);
-    	 repository.save(member);
-    	 
-    	 Member actualMember = repository.findOne(2L);
+        Member savedMember = repository.save(member);
+
+        Member actualMember = repository.findOne(savedMember.getMemberId());
     	 
     	 assertThat(actualMember).isEqualTo(member);
     }

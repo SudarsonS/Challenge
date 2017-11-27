@@ -35,10 +35,13 @@ public class MemberServiceTest {
     public void shouldCreateANewMemberByInvokingRepository() throws Exception {
         Member member = new Member();
         member.setDateOfBirth(LocalDate.now());
+        Member createdMember = new Member();
+        when(repository.save(any(Member.class))).thenReturn(createdMember);
 
-        service.createMember(member);
+        Member actualMember = service.createMember(member);
 
         verify(repository).save(member);
+        assertThat(actualMember).isEqualTo(createdMember);
     }
 
     @Test(expected = MemberValidationException.class)

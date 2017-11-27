@@ -34,11 +34,13 @@ public class MemberControllerTest {
     @Test
     public void shouldCreateMemberByInvokingMemberService() throws Exception {
         Member member = new Member();
+        when(memberService.createMember(any())).thenReturn(member);
 
-        ResponseEntity<Void> actualMember = controller.createMember(member);
+        ResponseEntity<Member> actualMember = controller.createMember(member);
 
         verify(memberService).createMember(member);
         assertThat(actualMember.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(actualMember.getBody()).isEqualTo(member);
     }
 
     @Test
