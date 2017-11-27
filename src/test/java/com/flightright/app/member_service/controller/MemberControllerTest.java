@@ -35,10 +35,10 @@ public class MemberControllerTest {
     public void shouldCreateMemberByInvokingMemberService() throws Exception {
         Member member = new Member();
 
-        ResponseEntity<Void> user = controller.createMember(member);
+        ResponseEntity<Void> actualMember = controller.createMember(member);
 
         verify(memberService).createMember(member);
-        assertThat(user.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(actualMember.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
     @Test
@@ -50,6 +50,7 @@ public class MemberControllerTest {
         ResponseEntity<Member> actualMember = controller.getMember(1L);
 
         verify(memberService).findById(1L);
+        assertThat(actualMember.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(actualMember.getBody()).isEqualTo(member);
     }
 
@@ -63,7 +64,38 @@ public class MemberControllerTest {
         ResponseEntity<List<Member>> response = controller.listAllMembers();
 
         verify(memberService).findAllMembers();
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isEqualTo(members);
     }
+    
+    @Test
+    public void shouldUpdateTheMemberByInvokingMemberService() throws Exception{
+    	Member member = new Member();
+    	when(memberService.updateMember(any(Member.class))).thenReturn(member);
+    	
+    	ResponseEntity<Member> actualMember = controller.updateMember(member);
+    	
+    	verify(memberService).updateMember(member);
+    	assertThat(actualMember.getStatusCode()).isEqualTo(HttpStatus.OK);
+    	assertThat(actualMember.getBody()).isEqualTo(member);
+    }
 
+    @Test
+    public void shouldDeleteTheMemberByIdByInvokingMemberService() throws Exception{
+    	Long id = 1L; 
+    	
+    	ResponseEntity<Void> response = controller.deleteMember(id);
+    	
+    	verify(memberService).deleteMember(id);
+    	assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+    
+    @Test
+    public void shouldDeleteAllTheMembersByIdByInvokingMemberService() throws Exception{
+    	
+    	ResponseEntity<Void> response = controller.deleteAllMembers();
+    	
+    	verify(memberService).deleteAllMembers();
+    	assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 }

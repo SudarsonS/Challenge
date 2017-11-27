@@ -47,13 +47,6 @@ public class MemberValidatorTest {
       }
       
       @Test
-      public void memberisValid(){
-    	  Member member = new Member(null, "jack", "chris", new Date(), 12345);
-    	  Set<ConstraintViolation<Member>> constraintViolations = validator.validate( member );
-    	  assertEquals( 0, constraintViolations.size() );
-      }
-      
-      @Test
       public void whenSerializingUsingJsonFormat_thenCorrect() throws JsonProcessingException, ParseException {
           SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
           df.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -64,6 +57,13 @@ public class MemberValidatorTest {
           String result = new ObjectMapper().writeValueAsString(member);
            
           assertThat(result, containsString(toParse));
+      }
+      
+      @Test
+      public void memberisValid(){
+    	  Member member = new Member(null, "jack", "chris", new Date(), 12345);
+    	  Set<ConstraintViolation<Member>> constraintViolations = validator.validate( member );
+    	  assertEquals( 0, constraintViolations.size() );
       }
 
 }
