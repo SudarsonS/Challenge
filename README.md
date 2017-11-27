@@ -57,12 +57,12 @@ This open the database console.
 
 ## Continuous Integration
 
-For Continuous Integration, CircleCI is used and #passed tag re-directs to the build.
+For Continuous Integration, CircleCI is used and #passed tag above re-directs to the build.
 
 ## API Documentation
 
 ### Create 
-To Create new "Member".
+To Create a new "Member".
 
 **Request**
 ```
