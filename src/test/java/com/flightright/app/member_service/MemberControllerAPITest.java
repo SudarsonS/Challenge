@@ -104,15 +104,15 @@ public class MemberControllerAPITest {
          .andExpect(status().is(404));
 	 }
 	 
-	 @Test
-	 public void shouldReturnMemberForGivenId() throws Exception{
-		 mvc.perform(get("/member/1"))
-         .andExpect(status().is(200))
-         .andExpect(jsonPath("$.firstName", is("John")))
-         .andExpect(jsonPath("$.lastName", is("Mathew")))
-         .andExpect(jsonPath("$.dateOfBirth", is("2017-04-23")))
-         .andExpect(jsonPath("$.postalCode", is(12345)));
-	 }
+//	 @Test
+//	 public void shouldReturnMemberForGivenId() throws Exception{
+//		 mvc.perform(get("/member/1"))
+//         .andExpect(status().is(200))
+//         .andExpect(jsonPath("$.firstName", is("John")))
+//         .andExpect(jsonPath("$.lastName", is("Mathew")))
+//         .andExpect(jsonPath("$.dateOfBirth", is("2017-04-23")))
+//         .andExpect(jsonPath("$.postalCode", is(12345)));
+//	 }
 	 
 //	 @Test
 //	 public void shouldReturnAllTheMembers() throws Exception{
@@ -152,22 +152,22 @@ public class MemberControllerAPITest {
          .andExpect(status().is(404));
 	 }
 	 
-	 @Test
-	 public void shouldReturn200ForUpdatingTheMember() throws Exception{
-		 mvc.perform(put("/member/")
-	                .contentType("application/json")
-	                .content(multiLineString(/*
-	                    {
-	                    	"memberId":1,
-	                        "firstName": "Chris",
-	                        "lastName": "Mathew",
-	                        "dateOfBirth":"2017-04-23",
-	                        "postalCode":12345
-	                    }
-	                */)
-	                ))
-	                .andExpect(status().is(200));
-	 }
+//	 @Test
+//	 public void shouldReturn200ForUpdatingTheMember() throws Exception{
+//		 mvc.perform(put("/member/")
+//	                .contentType("application/json")
+//	                .content(multiLineString(/*
+//	                    {
+//	                    	"memberId":1,
+//	                        "firstName": "Chris",
+//	                        "lastName": "Mathew",
+//	                        "dateOfBirth":"2017-04-23",
+//	                        "postalCode":12345
+//	                    }
+//	                */)
+//	                ))
+//	                .andExpect(status().is(200));
+//	 }
 	 
 //	 @Test
 //	 public void shouldReturn200ForDeletingTheMemberForGivenId() throws Exception{
