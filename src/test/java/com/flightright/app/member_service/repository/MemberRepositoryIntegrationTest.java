@@ -2,7 +2,7 @@ package com.flightright.app.member_service.repository;
 
 import com.flightright.app.member_service.Application;
 import com.flightright.app.member_service.entity.Member;
-import com.flightright.app.member_service.reposiory.MemberRepository;
+import com.flightright.app.member_service.repository.MemberRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

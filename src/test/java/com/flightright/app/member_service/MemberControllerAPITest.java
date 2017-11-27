@@ -16,7 +16,8 @@ import java.util.Map;
 import static com.flightright.app.member_service.util.MultiLineString.multiLineString;
 
 import com.flightright.app.member_service.entity.Member;
-import com.flightright.app.member_service.reposiory.MemberRepository;
+import com.flightright.app.member_service.repository.MemberRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

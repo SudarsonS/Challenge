@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import com.flightright.app.member_service.exception.MemberValidationException;
 
 
-public class Util {
-	private static final Logger logger = LoggerFactory.getLogger(Util.class);
+public class DateUtil {
+	private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
 	public static boolean isFutureDate(LocalDate dateOfBirth) {
 		if(dateOfBirth == null){
 			throw new MemberValidationException("Date of birth is null");

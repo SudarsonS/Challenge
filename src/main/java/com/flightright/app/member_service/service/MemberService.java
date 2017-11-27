@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.flightright.app.member_service.entity.Member;
 import com.flightright.app.member_service.exception.MemberNotFoundException;
 import com.flightright.app.member_service.exception.MemberValidationException;
-import com.flightright.app.member_service.reposiory.MemberRepository;
-import com.flightright.app.member_service.util.Util;
+import com.flightright.app.member_service.repository.MemberRepository;
+import com.flightright.app.member_service.util.DateUtil;
 
 @Service
 @Transactional
@@ -24,7 +24,7 @@ public class MemberService {
 	MemberRepository memberRepository;
 
 	public Member createMember(Member member) {
-		if(Util.isFutureDate(member.getDateOfBirth())){
+		if(DateUtil.isFutureDate(member.getDateOfBirth())){
 			logger.debug("Member has future date.");
 			throw new MemberValidationException("Future Date of Birth not valid");
 		}

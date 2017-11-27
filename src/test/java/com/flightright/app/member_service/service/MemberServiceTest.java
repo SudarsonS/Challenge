@@ -3,7 +3,8 @@ package com.flightright.app.member_service.service;
 import com.flightright.app.member_service.entity.Member;
 import com.flightright.app.member_service.exception.MemberNotFoundException;
 import com.flightright.app.member_service.exception.MemberValidationException;
-import com.flightright.app.member_service.reposiory.MemberRepository;
+import com.flightright.app.member_service.repository.MemberRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
