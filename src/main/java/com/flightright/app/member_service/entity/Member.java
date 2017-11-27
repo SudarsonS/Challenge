@@ -1,7 +1,7 @@
 package com.flightright.app.member_service.entity;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.flightright.app.member_service.serializer.LocalDateDeserializer;
+import com.flightright.app.member_service.serializer.LocalDateSerializer;
 
 @Entity(name="member")
 @Table(name="member")
@@ -32,10 +38,12 @@ public class Member {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	@JsonDeserialize(using = LocalDateDeserializer.class)  
+	@JsonSerialize(using = LocalDateSerializer.class) 
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@Column(name="date_of_birth")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	@Column(name="postal_code")
 	private int postalCode;
@@ -44,7 +52,7 @@ public class Member {
 		
 	}
 
-	public Member(Long memberId, String firstName, String lastName, Date dateOfBirth, int postalCode) {
+	public Member(Long memberId, String firstName, String lastName, LocalDate dateOfBirth, int postalCode) {
 		super();
 		this.memberId = memberId;
 		this.firstName = firstName;
@@ -77,11 +85,11 @@ public class Member {
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

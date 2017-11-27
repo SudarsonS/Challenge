@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MemberServiceTest {
     @Test
     public void shouldCreateANewMemberByInvokingRepository() throws Exception {
         Member member = new Member();
-        member.setDateOfBirth(new Date(DateUtil.now().getTime() + 2));
+        member.setDateOfBirth(LocalDate.now());
 
         service.createMember(member);
 
@@ -45,7 +46,7 @@ public class MemberServiceTest {
     @Test(expected = MemberValidationException.class)
     public void shouldNotSaveAMemberWhoseDateOfBirthIsInTheFuture() throws Exception {
         Member member = new Member();
-        member.setDateOfBirth(DateUtil.parse("2022-01-01"));
+        member.setDateOfBirth( LocalDate.now().plusDays(1));
 
         service.createMember(member);
 

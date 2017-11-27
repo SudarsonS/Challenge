@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 import java.util.TimeZone;
@@ -32,7 +33,7 @@ public class MemberValidatorTest {
 
       @Test
       public void firstNameIsNull(){
-    	  Member member = new Member(null, null, "chris", new Date(), 12345);
+    	  Member member = new Member(null, null, "chris",  LocalDate.now(), 12345);
     	  Set<ConstraintViolation<Member>> constraintViolations = validator.validate( member );
     	  assertEquals( 1, constraintViolations.size() );
     	  assertEquals("First name can not be null", constraintViolations.iterator().next().getMessage());
@@ -40,7 +41,7 @@ public class MemberValidatorTest {
       
       @Test
       public void lastNameIsNull(){
-    	  Member member = new Member(null, "jack", null, new Date(), 12345);
+    	  Member member = new Member(null, "jack", null, LocalDate.now(), 12345);
     	  Set<ConstraintViolation<Member>> constraintViolations = validator.validate( member );
     	  assertEquals( 1, constraintViolations.size() );
     	  assertEquals("Last name can not be null", constraintViolations.iterator().next().getMessage());
@@ -48,11 +49,10 @@ public class MemberValidatorTest {
       
       @Test
       public void whenSerializingUsingJsonFormat_thenCorrect() throws JsonProcessingException, ParseException {
-          SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-          df.setTimeZone(TimeZone.getTimeZone("UTC"));
+         
        
-          String toParse = "20-02-2015";
-          Date date = df.parse(toParse);
+          String toParse = "2015-02-20";
+          LocalDate date = LocalDate.of(2015, 02, 20);
           Member member = new Member(null, "jack", "chris", date, 12345);
           String result = new ObjectMapper().writeValueAsString(member);
            
@@ -61,7 +61,7 @@ public class MemberValidatorTest {
       
       @Test
       public void memberisValid(){
-    	  Member member = new Member(null, "jack", "chris", new Date(), 12345);
+    	  Member member = new Member(null, "jack", "chris", LocalDate.now(), 12345);
     	  Set<ConstraintViolation<Member>> constraintViolations = validator.validate( member );
     	  assertEquals( 0, constraintViolations.size() );
       }
