@@ -37,19 +37,19 @@ public class MemberController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Member> getMember(@PathVariable("id") long id) {
 		Member member = memberService.findById(id);
-		return new ResponseEntity<Member>(member, HttpStatus.OK);
+		return ResponseEntity.ok(member);
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Member>> listAllMembers() {
         List<Member> members = memberService.findAllMembers();
-        return new ResponseEntity<List<Member>>(members, HttpStatus.OK);
+        return ResponseEntity.ok(members);
     }
 	
 	 @RequestMapping(value = "/", method = RequestMethod.PUT)
 	 public ResponseEntity<Member> updateMember(@RequestBody Member newMember) {
 		Member member = memberService.updateMember(newMember);
-		return new ResponseEntity<Member>(member, HttpStatus.OK);	 
+		return ResponseEntity.ok(member);
 	 }
 	 
 	 @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
