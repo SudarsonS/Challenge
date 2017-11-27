@@ -4,7 +4,6 @@ import com.flightright.app.member_service.entity.Member;
 import com.flightright.app.member_service.exception.MemberNotFoundException;
 import com.flightright.app.member_service.exception.MemberValidationException;
 import com.flightright.app.member_service.reposiory.MemberRepository;
-import org.assertj.core.util.DateUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -12,7 +11,6 @@ import org.mockito.Mock;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;

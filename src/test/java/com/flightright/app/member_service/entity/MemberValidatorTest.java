@@ -4,11 +4,8 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.containsString;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
-import java.util.TimeZone;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
