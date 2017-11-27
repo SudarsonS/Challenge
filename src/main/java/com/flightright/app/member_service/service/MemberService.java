@@ -23,7 +23,7 @@ public class MemberService {
 	public void createMember(Member member) {
 		if(Util.isFutureDate(member.getDateOfBirth())){
 			logger.debug("Member has future date.");
-			throw new MemberValidationException("Future Date not valid");
+			throw new MemberValidationException("Future Date of Birth not valid");
 		}
 		memberRepository.save(member);
 	}
