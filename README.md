@@ -66,7 +66,7 @@ To Create a new "Member".
 
 **Request**
 ```
-POST http://localhost:8080/member/
+POST http://localhost:8080/members/
 
 Body:
 { "firstName" : String, "lastName": String , "dateOfBirth" : "yyyy-MM-dd", "postalCode": Integer }
@@ -86,10 +86,10 @@ To fetch a member for an given id
 
 **Request**
 ```
-GET http://localhost:8080/member/{id}
+GET http://localhost:8080/members/{id}
 
 Example:
-GET http://localhost:8080/member/2
+GET http://localhost:8080/members/2
 ```
 **Response**
 Returns Empty body with 200 or 404 status code
@@ -102,7 +102,7 @@ To fetch all the members.
 
 **Request**
 ```
-GET http://localhost:8080/member/
+GET http://localhost:8080/members/
 ```
 **Response**
 Returns Empty body with 200 or 404 status code
@@ -115,7 +115,7 @@ In order to update the saved member.
 
 **Request**
 ```
-PUT http://localhost:8080/member/
+PUT http://localhost:8080/members/
 
 Body: (New Member to update)
 { "memberId":Integer, "firstName" : String, "lastName": String , "dateOfBirth" : "yyyy-MM-dd", "postalCode": Integer }
@@ -134,10 +134,10 @@ To Delete a member for an given id
 
 **Request**
 ```
-DELETE http://localhost:8080/member/{id}
+DELETE http://localhost:8080/members/{id}
 
 Example:
-DELETE http://localhost:8080/member/2
+DELETE http://localhost:8080/members/2
 ```
 **Response**
 Returns Empty body with 200 or 404 status code
@@ -150,7 +150,7 @@ To fetch all the members.
 
 **Request**
 ```
-DELETE http://localhost:8080/member/
+DELETE http://localhost:8080/members/
 ```
 **Response**
 Returns Empty body with 200 or 404 status code
