@@ -117,7 +117,7 @@ In order to update the saved member.
 ```
 PUT http://localhost:8080/member/
 
-Body: (new Member to update)
+Body: (New Member to update)
 { "memberId":Integer, "firstName" : String, "lastName": String , "dateOfBirth" : "yyyy-MM-dd", "postalCode": Integer }
 
 Example:
