@@ -10,14 +10,14 @@ Simple REST application for “Member” service which:
 ## How to run the project?
 To run the project with Maven.
 ```
-https://github.com/SudarsonS/Challenge.git
+git clone https://github.com/SudarsonS/Challenge.git
 cd Challenge
 mvn clean install
 mvn spring-boot:run
 ```
 To run the project with Jar.
 ```
-https://github.com/SudarsonS/Challenge.git
+git clone https://github.com/SudarsonS/Challenge.git
 cd Challenge
 mvn clean package
 java -jar target/member-service-1.0.jar
@@ -75,7 +75,7 @@ Example:
 { "firstName" : "Johan", "lastName": "Mathew" , "dateOfBirth" : "1991-02-16", "postalCode": 10234 }
 ```
 **Response**
-Returns Empty body with 201 or 400 status code
+
 ```
 201 CREATED     - In case of Success
 400 BAD_REQUEST - In case the member is not valid or contains future time
@@ -92,7 +92,7 @@ Example:
 GET http://localhost:8080/members/2
 ```
 **Response**
-Returns Empty body with 200 or 404 status code
+
 ```
 200 OK     - In case of Success
 404 NOT_FOUND - In case the member is not found
@@ -105,7 +105,7 @@ To fetch all the members.
 GET http://localhost:8080/members/
 ```
 **Response**
-Returns Empty body with 200 or 404 status code
+
 ```
 200 OK     - In case of Success
 404 NOT_FOUND - In case no member is not found
@@ -124,7 +124,7 @@ Example:
 { "memberId":1, "firstName" : "Chris", "lastName": "Mathew" , "dateOfBirth" : "1991-02-16", "postalCode": 10234 }
 ```
 **Response**
-Returns Empty body with 200 or 404 status code
+
 ```
 200 OK     - In case of Success
 404 NOT_FOUND - In case the member is not found
@@ -140,7 +140,7 @@ Example:
 DELETE http://localhost:8080/members/2
 ```
 **Response**
-Returns Empty body with 200 or 404 status code
+
 ```
 200 OK     - In case of Success
 404 NOT_FOUND - In case the member is not found
@@ -153,7 +153,7 @@ To fetch all the members.
 DELETE http://localhost:8080/members/
 ```
 **Response**
-Returns Empty body with 200 or 404 status code
+
 ```
 200 OK     - In case of Success
 404 NOT_FOUND - In case no member is not found
